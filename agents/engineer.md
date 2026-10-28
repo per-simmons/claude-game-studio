@@ -20,6 +20,10 @@ model: inherit
 - **The live scene is the first frame.** Never show a still, placeholder or old frame before or under
   a live scene, including the opening. Preload the next scene during the current one; if it isn't
   ready, hold a short dark fade. Stills are a fallback for no-WebGL only.
+- **Bodies obey the room.** Every walk follows authored waypoints or a navmesh; doors open before anyone
+  reaches them; nobody walks through a wall, a door, furniture or the camera; seated characters sit on
+  the seat, not in it. Audit every walk-in, walk-off and placement in every scene, not only the one
+  that was reported.
 - Fix bugs from the board in severity order. Move each bug to `fixed` with a note saying how to verify
   it.
 
@@ -57,6 +61,9 @@ model: inherit
 - **Lip sync and framing:** mouths are driven from the audio (baked per-line curves where available,
   visemes from word timings as the fallback) and stay within 80 ms of the audio, measured. At each line
   start a probe checks the speaker is on screen, at least 35% of frame height, and in focus.
+- **Collision audit:** a script samples every authored path and placement against each room's collision
+  geometry (walls, doors, seats, tables) and the door timing, and probes seat penetration in mm. It
+  runs in CI and must report 0 failures.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

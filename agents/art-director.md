@@ -38,7 +38,8 @@ A regeneration is always a fresh generation with the fix written into the prompt
   is clearly better; otherwise keep the fallback and log the evidence.
 - **100% crops on every character:** hands read as separate fingers; every open mouth shape shows teeth,
   tongue or a dark-red interior, never flat black; facial hair is separate from the lips so the mouth
-  moves under it; hair isn't one clay shell; no smear at collars, ties or texture seams.
+  moves under it; hair isn't one clay shell; no smear at collars, ties or texture seams; feet don't
+  slide.
 - **See them talk.** Whoever is speaking is lit by the room, in focus, at least 35% of frame height when
   their line starts, and framed as a conversation (a real over-the-shoulder, the speaker on a thirds
   mark). A wide that holds a tiny or blurred speaker cuts to the speaker.
