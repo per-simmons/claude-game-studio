@@ -28,6 +28,16 @@ You draft. The narrative-lead decides.
 - The culprit appears early.
 - Names and plots are original. Write times as words.
 
+## The opening (any genre)
+Write for a player with zero context and a short attention span.
+- **Situation before references.** Before any pronoun, name or in-world term, say in plain words what
+  just happened, where the player is, and what the job is now.
+- **First-mention rule.** No name, "he/she/they", place or term is used before the line that defines
+  it. A tagline or catchphrase is explained the first time it's heard, or it's cut.
+- One idea per beat, at most 20 words on screen per beat.
+- Check: the narrative-lead's cold read (checklist item 9) and the first-60-seconds check
+  (`playtest-protocol.md` §2a).
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

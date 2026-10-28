@@ -29,6 +29,25 @@ Each one returns:
 - the moments they enjoyed;
 - bugs.
 
+## 2a. The first-60-seconds check (zero context)
+Run it on every build that touches the opening, the guide or the first screen. The text-only harness
+can't see clutter, so this one plays the **real visual build**.
+- **Fresh personas.** 3 new ones (low-attention casual, impatient skimmer, genre fan) play headless
+  from a fresh page load at real playback speed. They see only screenshots and captions as they
+  appear: no design docs, no hidden markers.
+- **After the opening, each answers five questions** from what they saw:
+  1. Who am I?
+  2. What just happened?
+  3. What's my goal?
+  4. Who is the first person I deal with, and why them?
+  5. What do I click next?
+- **Then each names every control** on the first interactive screen, without clicking: what it *does*.
+- **After every step, log "did you ever not know what to do?"** Target: 0 in the tutorial.
+- **Grading.** Grade what the answer says: a correct answer with an "I'm not sure" tag passes; an answer
+  hedged as the persona's own guess is a miss. Any miss is a severity-B bug. Fix, then re-run.
+- **A pass is necessary, not sufficient.** Personas read every word and never get bored. Pair it with
+  the narrative-lead's cold read and the producer's own real-click playthrough.
+
 ## 3. Human playtest (you, or a friend on camera)
 1. **Brief with no hints:** "You're the railroad's agent. Find out who did it before dawn."
 2. **Think aloud.** The observer prompts only with "What are you thinking?" if the player is silent for

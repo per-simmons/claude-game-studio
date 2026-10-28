@@ -59,7 +59,7 @@ invoked as `game-studio:<name>`).
 | Gate | Name | Acceptance criteria (written before the work starts) |
 |---|---|---|
 | **G0** | Concept | One-sheet, 3–4 pillars, the premise, the core loop in 60 seconds, the target session length, the risks. For mysteries: the twist in one line, and the story-auditor's speed-solve estimate |
-| **G1** | Vertical slice (greenlight) | One act or level fully playable at near-final quality, **including menus and settings**. Every system working. Red team and fun-audit P0 items 1, 2, 3, 9 and 10 pass. A 90-second capture |
+| **G1** | Vertical slice (greenlight) | One act or level fully playable at near-final quality, **including menus and settings**. Every system working. Red team and fun-audit P0 items 1, 2, 3, 9 and 10 pass. The first-60-seconds check (`playtest-protocol.md` §2a) answers 5/5 for 3 fresh personas. A 90-second capture |
 | **G2** | Content complete (beta) | All content in. All endings reachable. Linter PASS. **Zero open severity-A bugs.** Full fun audit P0 passes |
 | **G3** | Polish / ship (gold) | Zero bug bounce (no open bugs older than one cycle, nothing above C). Art and VO finals. Cert-style checklist (README, licence, setup on a clean machine). Postmortem written |
 

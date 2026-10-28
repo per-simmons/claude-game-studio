@@ -17,6 +17,8 @@ You review the **writers-room** and own the final bible.
 6. The twist is earned: on a re-read the clues were all there.
 7. Voice: each character sounds distinct.
 8. IP and sensitivity.
+9. **Cold read of the opening.** List every name, pronoun, place and in-world term in the first two
+   minutes, each with the line that defines it. Anything used before it's defined is a change request.
 
 ## After approval
 Ask the producer for a **story-auditor** pass (3 parallel reviewers, `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/adversarial-review.md`).

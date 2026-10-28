@@ -8,7 +8,9 @@ Score each item **Pass / Weak / Fail**, with evidence from the playtest logs or 
 failure blocks the gate.
 
 ## P0: must pass
-1. **The 60-second rule.** A newcomer can say what to do after the first minute.
+1. **The 60-second rule.** After the first minute, a newcomer can say who they are, what happened,
+   what their goal is and what to click next. Measured by `playtest-protocol.md` §2a, never by
+   opinion.
 2. **First wow under 2 minutes** (the hook lands). Example: the first directed line that makes a viewer
    lean in.
 3. **The core skill is real.** At least one moment per session where *listening* changed what the
