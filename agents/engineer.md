@@ -29,6 +29,9 @@ model: inherit
 ## Acceptance checks (each rule from the publisher's notes ships with its test)
 - **Intro before talk:** a unit test that every character's first conversation is preceded by their
   intro card, and that every on-screen name comes from the one name map.
+- **No jargon:** an e2e that collects the visible text at every golden-path step and fails on any word
+  from a banned list built from internal IDs (scene, character and system codes) plus the design
+  glossary.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

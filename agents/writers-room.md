@@ -39,6 +39,14 @@ Write for a player with zero context and a short attention span.
 - Check: the narrative-lead's cold read (checklist item 9) and the first-60-seconds check
   (`playtest-protocol.md` §2a).
 
+## Plain words
+- Player-facing text uses everyday words. No internal names: no scene or room codes, no working
+  titles of systems or mechanics, no tool words. Say "the kitchen", never "RM-02".
+- Insider, technical or period terms are explained on the spot or replaced. This covers every hover
+  label, card, title, objective and spoken line, including rooms the player hasn't reached.
+- Refusal and failure lines say what to do instead ("They won't talk yet. Pick someone else.").
+- Check: the engineer's jargon scan, and a plain-words pass logged in your ticket.
+
 ## Introduce everyone before they talk
 - The first time the player meets anyone, give their name, role, how they connect to the situation,
   **why the player is talking to them**, and what to ask first. One voiced line, plus a card.
