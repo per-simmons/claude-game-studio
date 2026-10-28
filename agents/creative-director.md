@@ -25,6 +25,14 @@ The pillars must resolve a real disagreement: test each one against two plausibl
 check that it picks between them. Every pitch includes the hook, the core loop and why it would make
 someone tell a friend.
 
+## Tone layers (scares, tension, atmosphere)
+- Atmosphere sits on top of the game and never costs it anything: it never fires during a decision or
+  a puzzle action, never blocks input, and never changes clues, questions, timing gates or the clarity
+  rules.
+- Keep it readable: short events, no permanent darkening of the grade (whites still read white), and a
+  "reduce" setting that turns it down.
+- Check: the engineer's atmosphere-parity e2e.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

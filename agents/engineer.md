@@ -64,6 +64,8 @@ model: inherit
 - **Collision audit:** a script samples every authored path and placement against each room's collision
   geometry (walls, doors, seats, tables) and the door timing, and probes seat penetration in mm. It
   runs in CI and must report 0 failures.
+- **Atmosphere parity:** the golden path runs with atmosphere on and off and must give the same steps,
+  gates and endings; during every atmosphere event, a probe confirms input still lands.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
