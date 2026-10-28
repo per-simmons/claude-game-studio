@@ -37,6 +37,9 @@ model: inherit
 - **One action:** an e2e that finds exactly one primary affordance (`[data-primary]`) and one
   objective at every step, plus a lint that every choice label is a full sentence (a question, or
   starts with a verb).
+- **Exploration:** an e2e that, during free exploration, no objective names a single object; the
+  nudge never fires before the stall time; the found counter goes up on each find; and the onward
+  button appears exactly when the key items are found.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

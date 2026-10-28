@@ -26,6 +26,17 @@ facts. Confession is a state, not something the LLM decides.
 - No unlimited free action trivialises the puzzle.
 - Brute force is computationally worse than deducing.
 
+## Guidance: a goal, not a pointer
+- The tutorial can be on rails: one thing at a time, one suggested move.
+- In a space the player explores, the objective names the goal ("Search the room."), never the object.
+  Interactables are found by looking (a subtle glint). A nudge toward the nearest unfound one comes
+  only after a stall (about 25 s with no find).
+- **Show what's left.** Examined things are visibly marked done, progress is plain ("3 of 11 found"),
+  and nothing needs clicking through twice.
+- **Show the way on.** When the space's key items are found, the player character says where to go
+  next and one button takes them there.
+- Check: the engineer's exploration e2e.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),
