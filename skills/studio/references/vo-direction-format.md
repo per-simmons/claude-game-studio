@@ -41,7 +41,8 @@ words it affects, plus scoped paired tags. Worked example:
 ## 3. Lint rules (enforced by code before any render)
 - **V-01.** A leading direction is at most 8 words. At most 2 inline directions and 1 paired tag per
   line.
-- **V-02.** Directions carry no facts, only tone, pace and attitude. They're shown on screen.
+- **V-02.** Directions carry no facts, only tone, pace and attitude. They may show in a Director's
+  View or video mode, never in the default player UI.
 - **V-03.** **Never start a line with a sound tag** (`[sighs]`, `[laughs]`, `[clears throat]`). This
   is the Drama 3 silent-after-first-line mitigation.
 - **V-04.** Numbers and times are written as words, so the timestamps match the script.

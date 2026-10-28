@@ -19,6 +19,16 @@ model: inherit
 - Captions are readable at 1080p.
 - No information meter gives the puzzle away.
 
+## Less on screen
+- **Word budget.** At most 20 visible words outside the spoken caption at any moment; 40 in an overlay
+  the player opened. No "How it works" blocks, no key-hint walls (one contextual hint at most), and
+  never the same hint twice on one screen.
+- **Teach at first use.** Each system (inventory, journal, timer, any verb) appears the moment it's
+  first needed, with one voiced sentence. Until then it isn't on screen.
+- **No production metadata** in the default UI: stage directions, IDs and debug text live behind a
+  video or debug flag.
+- Check: the engineer's word-budget e2e.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

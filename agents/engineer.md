@@ -32,6 +32,8 @@ model: inherit
 - **No jargon:** an e2e that collects the visible text at every golden-path step and fails on any word
   from a banned list built from internal IDs (scene, character and system codes) plus the design
   glossary.
+- **Word budget:** an e2e that counts visible words at every golden-path step: at most 20 outside
+  the caption, 40 in player-opened overlays. Log before/after counts in the report.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
