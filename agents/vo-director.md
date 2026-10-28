@@ -31,6 +31,17 @@ model: inherit
 - The player character has a cast voice, and the line sheet carries a player-voice line for every
   interactable (writers-room, "The player's voice").
 
+## Pacing defaults
+- **No dead air between beats:** at most 0.25 s of silence from one line to the next. Trim leading and
+  trailing silence on every take, and internal pauses over 0.25 s unless the direction asks for one.
+  Trim on a copy; word timings and lip curves follow the trimmed media clock.
+- **Brisk by default:** dialogue plays at about 1.2× with pitch preserved, the same in every scene.
+  Captions and lips follow media time, never wall time.
+- No hidden timer before the next beat. Text never shows on screen before its line is heard.
+- **Every line earns its place.** A line with no fact, instruction or character is cut, and a cut line
+  disappears from every log, journal and transcript the player can see.
+- Check: the engineer's silence-gap measurement and cut-line test.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

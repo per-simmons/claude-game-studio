@@ -27,6 +27,7 @@ failure blocks the gate.
    arriving.
 9. **Unbreakable.** Red-team pass, plus zero leaks in human sessions.
 10. **No dead air.** No pause over 4 s between a player's turn and the first audio. Over 2.5 s is Weak.
+    Between consecutive voiced beats, no gap over 0.25 s (measured, `vo-director.md` pacing defaults).
 
 ## P1: should pass
 11. **The interest curve** has a hook, a rising middle, a dip of confusion after the first reframe, a

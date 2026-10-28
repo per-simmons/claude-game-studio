@@ -46,6 +46,9 @@ model: inherit
 - **UI probe:** a script that visits every screen at 1920×1080 and 1280×720 and reports overlapping or
   clipped boxes, off-centre labels (over 2 px), mixed case, buttons with no press state, bare icons
   without a label, and mismatched names for one object. It must report 0.
+- **Pacing:** a real-click playthrough from a fresh load records the audio; `ffmpeg silencedetect`
+  (-45 dB, 0.15 s) measures every gap between beats, and any gap over 0.25 s fails. A content test
+  fails if a cut line's ID appears in any player-visible log, journal or transcript.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
