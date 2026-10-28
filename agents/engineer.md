@@ -26,6 +26,10 @@ model: inherit
 - Latency budget met.
 - No console errors.
 
+## Acceptance checks (each rule from the publisher's notes ships with its test)
+- **Intro before talk:** a unit test that every character's first conversation is preceded by their
+  intro card, and that every on-screen name comes from the one name map.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

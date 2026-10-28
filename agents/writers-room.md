@@ -39,6 +39,12 @@ Write for a player with zero context and a short attention span.
 - Check: the narrative-lead's cold read (checklist item 9) and the first-60-seconds check
   (`playtest-protocol.md` §2a).
 
+## Introduce everyone before they talk
+- The first time the player meets anyone, give their name, role, how they connect to the situation,
+  **why the player is talking to them**, and what to ask first. One voiced line, plus a card.
+- One display name per person, everywhere, from one name map. Titles and nicknames ("Miss X", a
+  first name alone) only appear after the full name has been on screen.
+
 ## The player's voice
 - The player character thinks out loud. On every object the player examines, and every time they use
   or show an item, they speak one short first-person line first: what it is, where it came from, why
