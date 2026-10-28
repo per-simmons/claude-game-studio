@@ -28,6 +28,8 @@ model: inherit
 - Every character has a tell signature, including honest nerves.
 - Each set piece renders in one pass.
 - Voices come from Voice Design or licensed voices. **Never a clone of a real person.**
+- The player character has a cast voice, and the line sheet carries a player-voice line for every
+  interactable (writers-room, "The player's voice").
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

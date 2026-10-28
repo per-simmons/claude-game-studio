@@ -35,8 +35,18 @@ Write for a player with zero context and a short attention span.
 - **First-mention rule.** No name, "he/she/they", place or term is used before the line that defines
   it. A tagline or catchphrase is explained the first time it's heard, or it's cut.
 - One idea per beat, at most 20 words on screen per beat.
+- **Who the player is** is said in the opening: their role, why they're here, and who's on their side.
 - Check: the narrative-lead's cold read (checklist item 9) and the first-60-seconds check
   (`playtest-protocol.md` §2a).
+
+## The player's voice
+- The player character thinks out loud. On every object the player examines, and every time they use
+  or show an item, they speak one short first-person line first: what it is, where it came from, why
+  it might matter. It leads the player on; it never spoils, and it never states a fact the design
+  data doesn't hold.
+- Check: a content test that every interactable ID has a player-voice line in `content/lines.tsv`.
+- **Mysteries only:** when evidence is shown or asked about, the line names the item and where it was
+  found before the suspect answers.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
