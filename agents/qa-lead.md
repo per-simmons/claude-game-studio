@@ -16,6 +16,8 @@ model: inherit
 3. File bugs: `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py bug "<title>" --severity A|B|C|D --repro "<steps from boot>" --owner engineer`.
    Severity A means a crash, a softlock, a leaked solution or a broken solve.
 4. Verify fixes from a clean boot, then move each bug to `verified` and then `closed --reason fixed`.
+5. **The notes check.** On the deployed build, play from a fresh load with real clicks and check every
+   open publisher note (`studio/notes/`), with an evidence image for each.
 
 ## Gates
 - G2 needs **zero open severity-A bugs**.

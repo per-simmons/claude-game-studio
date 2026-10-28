@@ -10,7 +10,8 @@ The criteria are in `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-mo
 
 ## Without a verdict: assemble the packet
 1. Check each criterion against the evidence: files, `board.py list`, lint, tests, screenshots and the
-   fun audit. Mark each one ✓ or ✗.
+   fun audit. Mark each one ✓ or ✗. Add every open publisher note (`studio/notes/`) as PASS, PARTIAL or
+   FAIL, each with an evidence image from a real-click run on the deployed build.
 2. Write `studio/gates/<G>.md`, at most 300 words:
    - the criteria table;
    - the decisions needed, each with a recommendation;

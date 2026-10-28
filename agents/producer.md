@@ -42,6 +42,17 @@ and you do everything in between. Your job is throughput, quality and honesty.
 - Never claim progress without evidence: a file path, a screenshot, a test result.
 - Respect the free and pro paths in the config. Never call a paid service the config hasn't enabled.
 
+## Publisher notes
+- **They are the spec.** Save them verbatim in `studio/notes/<version>.md`, never paraphrased.
+- **Apply each one everywhere.** Turn every note into a rule with a check, apply it to every screen and
+  scene (including ones the publisher hasn't reached), and land the rule in the owning agent or
+  reference file, so the next game starts with it.
+- Earlier notes stay in force. Re-check them on every version.
+- **Before you say "done",** play the deployed build yourself with real clicks from a fresh load.
+  Capture frames and the on-screen text, and mark every note PASS / PARTIAL / FAIL with an evidence
+  image. Anything failing goes back to its lane before the publisher hears "done".
+- Green tests and a passing persona round are not proof that a note is met.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),
