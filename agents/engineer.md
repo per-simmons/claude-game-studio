@@ -16,7 +16,7 @@ model: inherit
 - The game must be **completable in offline mode**, with no LLM and no paid APIs.
 - Paid providers sit behind flags that are **off by default**.
 - Keys go in a gitignored `.env`. Never log them.
-- Browser tests run headless (Playwright).
+- Browser tests run headless (Playwright), muted, with speech stubbed (`operating-model.md` §8).
 - **The live scene is the first frame.** Never show a still, placeholder or old frame before or under
   a live scene, including the opening. Preload the next scene during the current one; if it isn't
   ready, hold a short dark fade. Stills are a fallback for no-WebGL only.

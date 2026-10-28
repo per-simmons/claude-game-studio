@@ -108,6 +108,18 @@ loop:
 The pane title is the role. The background colour is the lane colour. Every board transition prints
 one line, so the camera can see work move.
 
+## 8. Machine hygiene (the publisher's machine is shared)
+- **Silent.** Every test, bot and capture launches the browser with `--mute-audio` and stubs speech
+  synthesis. Nothing plays through the speakers. Captures that need audio mux the cached files with
+  ffmpeg instead.
+- **Memory.** Keep at least 30% free. One heavy 3D process (Blender) at a time, at most two headless
+  browsers, no parallel e2e runs across lanes. Close everything you start.
+- **Disk.** Scratch goes where the config says. Pause heavy work under the configured floor.
+- **Kill only what you started,** by PID from a pidfile or `$!`. Never by name or pattern
+  (`pkill -f`, `killall`): that takes out the publisher's own servers and monitors.
+- Check: the test config carries `--mute-audio` and the speech stub (grep it in CI), and every heavy job
+  logs free memory and disk before it starts and stops under the floor.
+
 ## Sources
 Studio practice:
 - Clinton Keith, *Agile Game Development*, via https://cs.ccsu.edu/~stan/classes/CS415/notes/02-Scrum.html
