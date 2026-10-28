@@ -1,0 +1,1084 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "game-studio/case-file.schema.json",
+  "title": "Detective case file",
+  "description": "Machine version of a narrative bible for an interrogation/deduction game. The server holds the whole file; the client receives only `public` fields. Authored truth lives here; LLMs only phrase beats. IDs: characters CH-*, claims CL-*, evidence E-*, testimony T-*, contradictions C-*, storylets/beats B-*, endings END-*.",
+  "type": "object",
+  "required": [
+    "meta",
+    "clock",
+    "places",
+    "characters",
+    "cards",
+    "claims",
+    "contradictions",
+    "links",
+    "storylets",
+    "solution",
+    "endings",
+    "timeline",
+    "topics"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z]{1,4}(-[A-Z0-9]+)+$"
+    },
+    "clock": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2879,
+      "description": "Minutes after 00:00 of the case's day in the case's TRUE time base (negative days not allowed; use 1440+ for next day)."
+    },
+    "qualityExpr": {
+      "description": "Storylet prerequisite in QBN style. All listed conditions must hold.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "flags_all": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flags_any": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "flags_none": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cards_seen_all": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "cards_seen_any": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "claims_broken_all": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/id"
+          }
+        },
+        "composure_lte": {
+          "type": "integer"
+        },
+        "composure_gte": {
+          "type": "integer"
+        },
+        "trust_gte": {
+          "type": "integer"
+        },
+        "clock_gte": {
+          "$ref": "#/$defs/clock"
+        },
+        "clock_lte": {
+          "$ref": "#/$defs/clock"
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "required": [
+        "id",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "description": "Spoken words only (no tags)."
+        },
+        "direction": {
+          "type": "string",
+          "description": "Leading stage direction, <=8 words, tone/pace only."
+        },
+        "inline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "before_word",
+              "direction"
+            ],
+            "properties": {
+              "before_word": {
+                "type": "string"
+              },
+              "direction": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "paired": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "tag",
+              "words"
+            ],
+            "properties": {
+              "tag": {
+                "enum": [
+                  "whisper",
+                  "emphasis",
+                  "soft",
+                  "fast",
+                  "slow",
+                  "stress",
+                  "forceful"
+                ]
+              },
+              "words": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "intensity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "speaker": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    }
+  },
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "version",
+        "setting",
+        "ip_notes"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "setting": {
+          "type": "string"
+        },
+        "ip_notes": {
+          "type": "string",
+          "description": "What was deliberately distanced from which works."
+        },
+        "content_rating": {
+          "type": "string"
+        }
+      }
+    },
+    "clock": {
+      "type": "object",
+      "required": [
+        "start",
+        "deadline",
+        "costs",
+        "time_base"
+      ],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/clock"
+        },
+        "deadline": {
+          "$ref": "#/$defs/clock"
+        },
+        "time_base": {
+          "type": "string",
+          "description": "e.g. 'Pacific railroad time'"
+        },
+        "costs": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": "Minutes per intent/action: ASK, FOLLOW_UP, PRESS, REASSURE, PRESENT, CONFRONT, FETCH, SEARCH, SNOW_SEARCH, FACEOFF, SMALL_TALK, META..."
+        },
+        "scheduled": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "at",
+              "beat"
+            ],
+            "properties": {
+              "at": {
+                "$ref": "#/$defs/clock"
+              },
+              "beat": {
+                "$ref": "#/$defs/id"
+              },
+              "only_if": {
+                "$ref": "#/$defs/qualityExpr"
+              }
+            }
+          }
+        },
+        "withdraw_after_misses": {
+          "type": "integer",
+          "default": 3
+        },
+        "withdraw_minutes": {
+          "type": "integer",
+          "default": 20
+        }
+      }
+    },
+    "places": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "art": {
+            "type": "string"
+          },
+          "hotspots": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "reveals"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "reveals": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id"
+                  }
+                },
+                "requires": {
+                  "$ref": "#/$defs/qualityExpr"
+                },
+                "action": {
+                  "enum": [
+                    "EXAMINE",
+                    "SEARCH",
+                    "RUB_PAD",
+                    "SNOW_SEARCH"
+                  ]
+                }
+              }
+            }
+          },
+          "search_requires": {
+            "$ref": "#/$defs/qualityExpr"
+          }
+        }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "role",
+          "public",
+          "secret",
+          "voice",
+          "baseline",
+          "tells"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "enum": [
+              "victim",
+              "killer",
+              "suspect",
+              "partner",
+              "witness"
+            ]
+          },
+          "accusable": {
+            "type": "boolean"
+          },
+          "public": {
+            "type": "object",
+            "required": [
+              "summary",
+              "public_facts"
+            ],
+            "properties": {
+              "summary": {
+                "type": "string"
+              },
+              "public_facts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "mannerisms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Everything the persona writer may ever see from turn 1."
+          },
+          "secret": {
+            "type": "object",
+            "required": [
+              "summary"
+            ],
+            "properties": {
+              "summary": {
+                "type": "string"
+              },
+              "topic_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "SERVER ONLY. Never sent to the writer LLM; released only via authored beats."
+          },
+          "voice": {
+            "type": "object",
+            "required": [
+              "design_instruction"
+            ],
+            "properties": {
+              "design_instruction": {
+                "type": "string"
+              },
+              "voice_id": {
+                "type": "string"
+              },
+              "placeholder": {
+                "type": "object",
+                "properties": {
+                  "pitch": {
+                    "type": "number"
+                  },
+                  "rate": {
+                    "type": "number"
+                  },
+                  "voice_name_hint": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "baseline": {
+            "type": "object",
+            "required": [
+              "composure",
+              "trust",
+              "direction"
+            ],
+            "properties": {
+              "composure": {
+                "type": "integer"
+              },
+              "trust": {
+                "type": "integer"
+              },
+              "direction": {
+                "type": "string"
+              }
+            }
+          },
+          "tells": {
+            "type": "object",
+            "description": "Direction strings per state, e.g. lie, hot_topic, pressed_true, crack, confession, never[].",
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          },
+          "responds_to": {
+            "type": "object",
+            "properties": {
+              "REASSURE": {
+                "type": "number"
+              },
+              "PRESS": {
+                "type": "number"
+              },
+              "THREATEN": {
+                "type": "number"
+              }
+            },
+            "description": "Multipliers on trust/composure deltas."
+          },
+          "locks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "category"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "category": {
+                  "enum": [
+                    "alibi",
+                    "motive",
+                    "physical"
+                  ]
+                }
+              }
+            }
+          },
+          "tiers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "tier",
+                "requires",
+                "facts"
+              ],
+              "properties": {
+                "tier": {
+                  "type": "integer"
+                },
+                "requires": {
+                  "$ref": "#/$defs/qualityExpr"
+                },
+                "facts": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/$defs/id"
+                  }
+                }
+              }
+            }
+          },
+          "whereabouts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "from",
+                "to",
+                "place",
+                "truth"
+              ],
+              "properties": {
+                "from": {
+                  "$ref": "#/$defs/clock"
+                },
+                "to": {
+                  "$ref": "#/$defs/clock"
+                },
+                "place": {
+                  "$ref": "#/$defs/id"
+                },
+                "truth": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "cards": {
+      "type": "array",
+      "description": "Evidence (E-*), testimony (T-*), contradiction (C-*).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "title",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "kind": {
+            "enum": [
+              "evidence",
+              "testimony",
+              "contradiction"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "description": "Player-facing text."
+          },
+          "art": {
+            "type": "string"
+          },
+          "found_at": {
+            "type": "string"
+          },
+          "source_line": {
+            "type": "string",
+            "description": "For testimony: the line id that creates it when pinned."
+          },
+          "role": {
+            "enum": [
+              "essential",
+              "supporting",
+              "herring",
+              "personal"
+            ]
+          },
+          "proof_category": {
+            "enum": [
+              "alibi",
+              "motive",
+              "physical"
+            ]
+          },
+          "act": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "description": "Earliest act in which it is obtainable (linter leak check)."
+          },
+          "herring_resolution": {
+            "type": "string"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Words a player might use to refer to this card (offline matcher)."
+          }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "speaker",
+          "text",
+          "is_true"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "speaker": {
+            "$ref": "#/$defs/id"
+          },
+          "text": {
+            "type": "string"
+          },
+          "is_true": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": "string",
+            "description": "e.g. 'true on the Colonel's clock'"
+          },
+          "heard_via": {
+            "type": "string",
+            "description": "line/beat id that utters it"
+          }
+        }
+      }
+    },
+    "contradictions": {
+      "type": "array",
+      "description": "Deterministic crack table. PRESENT(card->claim) or CONFRONT(a,b) hits iff listed.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "claim",
+          "cards",
+          "result_beat"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "claim": {
+            "$ref": "#/$defs/id"
+          },
+          "cards": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/id"
+            },
+            "description": "Any ONE of these breaks the claim."
+          },
+          "requires": {
+            "$ref": "#/$defs/qualityExpr"
+          },
+          "result_beat": {
+            "$ref": "#/$defs/id"
+          },
+          "creates_card": {
+            "$ref": "#/$defs/id"
+          },
+          "composure_delta": {
+            "type": "integer"
+          },
+          "opens_lock": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "Board links: linking card a + card b creates a contradiction card.",
+      "items": {
+        "type": "object",
+        "required": [
+          "a",
+          "b",
+          "creates"
+        ],
+        "properties": {
+          "a": {
+            "$ref": "#/$defs/id"
+          },
+          "b": {
+            "$ref": "#/$defs/id"
+          },
+          "creates": {
+            "$ref": "#/$defs/id"
+          },
+          "hunch_line": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "storylets": {
+      "type": "array",
+      "description": "QBN storylets / beats per character and topic. mode=authored lines are never paraphrased.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "char",
+          "topic",
+          "mode",
+          "lines"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "char": {
+            "$ref": "#/$defs/id"
+          },
+          "topic": {
+            "type": "string"
+          },
+          "intents": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "ASK",
+                "FOLLOW_UP",
+                "PRESS",
+                "REASSURE",
+                "THREATEN",
+                "SMALL_TALK",
+                "PRESENT",
+                "CONFRONT",
+                "META",
+                "DEMAND_CONFESSION",
+                "BARGAIN",
+                "SCHEDULED",
+                "FACEOFF",
+                "ACCUSE"
+              ]
+            }
+          },
+          "requires": {
+            "$ref": "#/$defs/qualityExpr"
+          },
+          "priority": {
+            "type": "integer",
+            "description": "Higher wins (salience: most specific match first)."
+          },
+          "once": {
+            "type": "boolean"
+          },
+          "mode": {
+            "enum": [
+              "authored",
+              "writer"
+            ]
+          },
+          "facts_allowed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "lines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/line"
+            }
+          },
+          "utters_claims": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "reveals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "sets_flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "composure_delta": {
+            "type": "integer"
+          },
+          "trust_delta": {
+            "type": "integer"
+          },
+          "multi_speaker": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "solution": {
+      "type": "object",
+      "required": [
+        "who",
+        "how",
+        "when",
+        "why",
+        "proof"
+      ],
+      "properties": {
+        "who": {
+          "$ref": "#/$defs/id"
+        },
+        "how": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Accepted word-bank answers."
+        },
+        "when": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "why": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proof": {
+          "type": "object",
+          "required": [
+            "alibi",
+            "motive",
+            "physical"
+          ],
+          "properties": {
+            "alibi": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/id"
+              }
+            },
+            "motive": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/id"
+              }
+            },
+            "physical": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/id"
+              }
+            }
+          }
+        },
+        "confession_beat": {
+          "$ref": "#/$defs/id"
+        }
+      }
+    },
+    "endings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "condition",
+          "beat"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "title": {
+            "type": "string"
+          },
+          "condition": {
+            "type": "string",
+            "description": "Machine-checkable expression over theory/flags, documented in the engine."
+          },
+          "beat": {
+            "$ref": "#/$defs/id"
+          },
+          "epilogue_choices": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "epilogue_beats": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Maps an epilogue choice label to the storylet id it plays."
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "description": "The fabula, minute by minute, TRUE time base. Server-only. Used by the linter and by QA, never by the writer LLM.",
+      "items": {
+        "type": "object",
+        "required": [
+          "t",
+          "event"
+        ],
+        "properties": {
+          "t": {
+            "$ref": "#/$defs/clock"
+          },
+          "event": {
+            "type": "string"
+          },
+          "who": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id"
+            }
+          },
+          "traces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/id"
+            }
+          }
+        }
+      }
+    },
+    "hunch": {
+      "type": "array",
+      "description": "Deterministic passive-check lines about performance, never truth.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "trigger",
+          "line"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "trigger": {
+            "type": "string",
+            "description": "e.g. tell_fired:CH-CEL:accent | latency_flag:CH-NOR | link_created:C-STOP"
+          },
+          "line": {
+            "$ref": "#/$defs/line"
+          }
+        }
+      }
+    },
+    "refusals": {
+      "type": "object",
+      "description": "Authored in-world responses for META / DEMAND_CONFESSION / BARGAIN per character, keyed by composure band.",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/line"
+          }
+        }
+      }
+    },
+    "topics": {
+      "type": "array",
+      "description": "Askable topics. `keywords` drive the offline (no-LLM) intent matcher; `label` is shown in the notebook.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "keywords"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "keywords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "requires": {
+            "$ref": "#/$defs/qualityExpr"
+          }
+        }
+      }
+    },
+    "choices": {
+      "type": "array",
+      "description": "Moral/branch decisions offered to the player (e.g. keep a secret or report it).",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "prompt",
+          "options"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "prompt": {
+            "type": "string"
+          },
+          "requires": {
+            "$ref": "#/$defs/qualityExpr"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "label"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "sets_flags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "beat": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

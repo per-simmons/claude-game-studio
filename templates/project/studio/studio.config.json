@@ -1,0 +1,39 @@
+{
+  "studio_version": 1,
+  "game": { "title": "Untitled", "premise": "", "kind": "mystery-case-pack", "session_minutes": [20, 40] },
+  "path": "free",
+  "image": {
+    "provider": "manual",
+    "command": "",
+    "_help": "manual = the studio writes prompts to art/prompts/ and you paste them into ANY image generator, then save files where TODO.md says. command = a shell command with {prompt_file} and {out}, e.g. your own generator CLI. Never put API keys here."
+  },
+  "voice": {
+    "provider": "fish-drama3",
+    "enabled": false,
+    "api_key_env": "FISH_API_KEY",
+    "signup": "https://fish.audio",
+    "docs": "https://docs.fish.audio/features/text-to-speech/drama-3",
+    "_help": "Default VO department = Fish Audio Drama 3. Until enabled is true (and FISH_API_KEY is set in .env), the game uses the free placeholder voice and nothing calls the API."
+  },
+  "llm": {
+    "mode": "offline",
+    "provider": "openrouter",
+    "api_key_env": "OPENROUTER_API_KEY",
+    "classifier_model": "",
+    "writer_model": "",
+    "_help": "offline = no LLM at runtime; suspects speak authored lines (fully playable, free). live = free-text suspects via an LLM key you supply."
+  },
+  "blender": { "enabled": false, "bin": "blender", "_help": "PRO: local Blender scenes/props. Off on the free path." },
+  "runpod": {
+    "enabled": false, "api_key_env": "RUNPOD_API_KEY", "env_file": "", "max_price": 0.40, "max_minutes": 20,
+    "_help": "PRO: final Cycles renders on a rented GPU. Every run has a price ceiling, a watchdog and auto-terminate."
+  },
+  "pro": { "respect_recording": false, "recorder_process": "obs", "_help": "If true, heavy local work waits while the recorder process is running." },
+  "floor": {
+    "terminal": "iterm2",
+    "roles": ["producer", "narrative-lead", "writers-room", "art-director", "character-artist", "engineer", "qa-lead"],
+    "bounds": null,
+    "permission": "acceptEdits"
+  },
+  "gates": { "require_publisher_approval": true }
+}

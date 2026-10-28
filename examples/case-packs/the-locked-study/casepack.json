@@ -1,0 +1,35 @@
+{
+  "format": "casepack/1",
+  "id": "the-locked-study",
+  "title": "The Locked Study",
+  "premise": "A map collector is found dead in a study bolted from the inside, on a flooded winter night in 1951.",
+  "blurb": "A bolted door, a stopped clock, three frightened people and one constable who knows the house. Two and a half hours until the county takes the case.",
+  "version": "1.0.0",
+  "authors": [
+    "Game Studio example"
+  ],
+  "license": "CC-BY-4.0",
+  "content_rating": "All ages: one off-page death, no gore",
+  "play_minutes": [
+    8,
+    15
+  ],
+  "case_file": "case-file.json",
+  "voices": {
+    "provider_default": "placeholder",
+    "fish_voice_ids": {}
+  },
+  "art": {
+    "style": "none (text only)",
+    "portraits": "art/portraits",
+    "scenes": "art/scenes"
+  },
+  "spoiler_files": [
+    "case-file.json"
+  ],
+  "lint": {
+    "passed": true,
+    "linter_version": "1",
+    "min_path_actions": 10
+  }
+}

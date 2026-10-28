@@ -1,0 +1,9 @@
+{
+  "name": "game-studio",
+  "displayName": "Game Studio",
+  "version": "0.1.0",
+  "description": "Run a multi-agent AI game company in Claude Code: producer, creative director, writers' room, narrative lead, story auditors, systems, art, UI, voice direction, engineers and QA, working off a shared board with review loops and milestone gates. Ships a playable mystery case-pack format, a free terminal player, and an example murder mystery.",
+  "author": { "name": "AI for Mortals" },
+  "license": "MIT",
+  "keywords": ["game-dev", "multi-agent", "sub-agents", "game-design", "narrative-design", "murder-mystery", "voice", "fish-audio", "blender"]
+}

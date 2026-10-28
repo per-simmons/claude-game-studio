@@ -1,0 +1,40 @@
+{
+  "format": "casepack/1",
+  "id": "dead-air-on-the-meridian",
+  "title": "Dead Air on the Meridian",
+  "premise": "A radio gossip king is murdered on a snowbound 1936 sleeper train.",
+  "blurb": "Six frightened passengers. Four hours to dawn. Everyone is hiding something \u2014 only one of them killed.",
+  "version": "1.0.0",
+  "authors": [
+    "Game Studio example"
+  ],
+  "license": "CC-BY-4.0",
+  "content_rating": "Teen: implied violence, adult secrets, no gore",
+  "play_minutes": [
+    20,
+    40
+  ],
+  "case_file": "case-file.json",
+  "voices": {
+    "provider_default": "placeholder",
+    "fish_voice_ids": {}
+  },
+  "art": {
+    "style": "deco noir gouache",
+    "portraits": "art/portraits",
+    "scenes": "art/scenes"
+  },
+  "spoiler_files": [
+    "NARRATIVE.md",
+    "VO-DIRECTION.md",
+    "GDD.md",
+    "TECH.md",
+    "ART-BIBLE.md",
+    "case-file.json"
+  ],
+  "lint": {
+    "passed": true,
+    "linter_version": "1",
+    "min_path_actions": 16
+  }
+}

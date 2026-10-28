@@ -1,0 +1,15 @@
+{
+  "name": "game-studio",
+  "owner": { "name": "AI for Mortals" },
+  "description": "The Game Studio plugin: a multi-agent AI game company for Claude Code.",
+  "plugins": [
+    {
+      "name": "game-studio",
+      "source": "./",
+      "description": "A multi-agent AI game company: departments as sub-agents, a shared board, review loops, milestone gates, studio-floor mode, and playable mystery case packs.",
+      "version": "0.1.0",
+      "category": "productivity",
+      "tags": ["game-dev", "multi-agent"]
+    }
+  ]
+}

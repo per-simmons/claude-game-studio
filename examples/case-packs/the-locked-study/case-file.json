@@ -1,0 +1,2003 @@
+{
+  "meta": {
+    "id": "the-locked-study",
+    "title": "The Locked Study",
+    "version": "1.0.0",
+    "setting": "Fenwick Hall, a cold stone house in the Northumberland hills, the night of 14 February 1951. The river has flooded the lane.",
+    "ip_notes": "Original story. Uses the generic locked-room device only; no characters, names, or solutions borrowed from any published mystery.",
+    "content_rating": "All ages: one off-page death, no gore"
+  },
+  "clock": {
+    "start": 1410,
+    "deadline": 1560,
+    "time_base": "Fenwick Hall clocks (local GMT)",
+    "costs": {
+      "ASK": 3,
+      "FOLLOW_UP": 2,
+      "PRESS": 4,
+      "REASSURE": 3,
+      "THREATEN": 4,
+      "SMALL_TALK": 1,
+      "PRESENT": 5,
+      "CONFRONT": 5,
+      "EXAMINE": 4,
+      "SEARCH": 10,
+      "FETCH": 2,
+      "META": 0,
+      "DEMAND_CONFESSION": 1,
+      "BARGAIN": 1,
+      "CHOOSE": 0
+    },
+    "scheduled": [
+      {
+        "at": 1500,
+        "beat": "B-JUN-CLOCK",
+        "only_if": {
+          "flags_none": [
+            "BOTTLENECK_2"
+          ]
+        }
+      },
+      {
+        "at": 1530,
+        "beat": "B-JUN-LATE"
+      }
+    ],
+    "withdraw_after_misses": 3,
+    "withdraw_minutes": 20
+  },
+  "places": [
+    {
+      "id": "P-STUDY",
+      "name": "the study",
+      "hotspots": [
+        {
+          "id": "door",
+          "label": "the broken study door",
+          "reveals": [
+            "E-BOLT"
+          ]
+        },
+        {
+          "id": "mantel",
+          "label": "the mantelpiece",
+          "reveals": [
+            "E-CLOCK"
+          ]
+        },
+        {
+          "id": "tray",
+          "label": "the tea tray",
+          "reveals": [
+            "E-TEA"
+          ]
+        },
+        {
+          "id": "panelling",
+          "label": "the oak panelling",
+          "reveals": [
+            "E-HATCH"
+          ],
+          "requires": {
+            "flags_all": [
+              "BOTTLENECK_1"
+            ]
+          }
+        },
+        {
+          "id": "blotter",
+          "label": "the desk blotter",
+          "reveals": [
+            "E-BLOTTER"
+          ],
+          "requires": {
+            "flags_all": [
+              "BOTTLENECK_2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "P-LIBRARY",
+      "name": "the library",
+      "hotspots": [
+        {
+          "id": "typewriter",
+          "label": "the typewriter",
+          "reveals": [
+            "E-PAGE"
+          ],
+          "requires": {
+            "flags_all": [
+              "TOB_ALIBI"
+            ]
+          }
+        },
+        {
+          "id": "desk",
+          "label": "Mr Wren's desk drawers",
+          "reveals": [
+            "E-LEDGER"
+          ],
+          "action": "SEARCH",
+          "requires": {
+            "flags_all": [
+              "BOTTLENECK_2"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "P-PANTRY",
+      "name": "the pantry",
+      "search_requires": {
+        "flags_all": [
+          "BOTTLENECK_1"
+        ]
+      },
+      "hotspots": [
+        {
+          "id": "shaft",
+          "label": "the dumbwaiter shaft",
+          "reveals": [
+            "E-GLOVE"
+          ],
+          "action": "SEARCH"
+        }
+      ]
+    },
+    {
+      "id": "P-DRAWING",
+      "name": "the drawing room",
+      "hotspots": []
+    }
+  ],
+  "characters": [
+    {
+      "id": "CH-EDM",
+      "name": "Edmund Grale",
+      "role": "victim",
+      "accusable": false,
+      "public": {
+        "summary": "Seventy-one, a collector of antique maps. Found dead in his bolted study at 10:55 PM.",
+        "public_facts": [
+          "He collected maps for fifty years",
+          "He was found on the hearthrug"
+        ]
+      },
+      "secret": {
+        "summary": "He had discovered his secretary was selling forgeries under his name, and had written to the police."
+      },
+      "voice": {
+        "design_instruction": "Not heard."
+      },
+      "baseline": {
+        "composure": 50,
+        "trust": 50,
+        "direction": ""
+      },
+      "tells": {}
+    },
+    {
+      "id": "CH-TOB",
+      "name": "Tobias Wren",
+      "role": "killer",
+      "aliases": [
+        "Wren",
+        "Mr Wren",
+        "the secretary",
+        "Toby"
+      ],
+      "public": {
+        "summary": "Grale's secretary for twelve years. Neat, helpful, grey cardigan, violet ink on one finger.",
+        "public_facts": [
+          "He catalogued the map collection",
+          "He helped break down the study door"
+        ],
+        "mannerisms": [
+          "touches his cuff when lying"
+        ]
+      },
+      "secret": {
+        "summary": "He sold forged copies of Grale's maps. Grale found out; Tobias struck him at 10:40, bolted the door and escaped down the dumbwaiter.",
+        "topic_ids": [
+          "maps",
+          "dumbwaiter",
+          "whereabouts"
+        ]
+      },
+      "voice": {
+        "design_instruction": "Mid-forties English man, soft precise RP, helpful to a fault; goes cold and level when cornered.",
+        "placeholder": {
+          "pitch": 0.95,
+          "rate": 1.0,
+          "voice_name_hint": "Daniel"
+        }
+      },
+      "baseline": {
+        "composure": 80,
+        "trust": 50,
+        "direction": "smooth, helpful"
+      },
+      "tells": {
+        "lie": "touching his cuff",
+        "crack": "a breath too long",
+        "confession": "cold and level, almost relieved",
+        "never": [
+          "sobbing",
+          "shouting"
+        ]
+      },
+      "responds_to": {
+        "PRESS": 1.0,
+        "REASSURE": 0.5,
+        "THREATEN": 1.5
+      },
+      "locks": [
+        {
+          "id": "alibi",
+          "category": "alibi"
+        },
+        {
+          "id": "motive",
+          "category": "motive"
+        },
+        {
+          "id": "physical",
+          "category": "physical"
+        }
+      ]
+    },
+    {
+      "id": "CH-IRI",
+      "name": "Iris Grale",
+      "role": "suspect",
+      "aliases": [
+        "Iris",
+        "Miss Grale",
+        "the niece"
+      ],
+      "public": {
+        "summary": "Grale's niece and heir, twenty-nine, a botanist with soil under her nails.",
+        "public_facts": [
+          "She inherits Fenwick Hall",
+          "She keeps orchids in the conservatory"
+        ]
+      },
+      "secret": {
+        "summary": "Nothing criminal. She overheard her uncle say 'Tobias' when a dealer's letter came on Tuesday."
+      },
+      "voice": {
+        "design_instruction": "Late-twenties English woman, dry wit over grief, quick.",
+        "placeholder": {
+          "pitch": 1.15,
+          "rate": 1.05,
+          "voice_name_hint": "Kate"
+        }
+      },
+      "baseline": {
+        "composure": 70,
+        "trust": 45,
+        "direction": "dry, tired"
+      },
+      "tells": {
+        "hot_topic": "sharper"
+      }
+    },
+    {
+      "id": "CH-HES",
+      "name": "Hester Moss",
+      "role": "suspect",
+      "aliases": [
+        "Hester",
+        "Mrs Moss",
+        "the housekeeper"
+      ],
+      "public": {
+        "summary": "Housekeeper at Fenwick Hall for forty years.",
+        "public_facts": [
+          "She took Grale his tea at half past nine",
+          "She raised the alarm at 10:55"
+        ]
+      },
+      "secret": {
+        "summary": "She is hiding her nephew, who has dodged his call-up, in the stable loft. Going to feed him, she saw Tobias leave the pantry at 10:50."
+      },
+      "voice": {
+        "design_instruction": "Sixties Northumbrian woman, warm, frightened, plain-spoken.",
+        "placeholder": {
+          "pitch": 1.0,
+          "rate": 0.9,
+          "voice_name_hint": "Moira"
+        }
+      },
+      "baseline": {
+        "composure": 60,
+        "trust": 40,
+        "direction": "shaky, kind"
+      },
+      "tells": {
+        "lie": "too quick"
+      },
+      "responds_to": {
+        "REASSURE": 1.5,
+        "PRESS": 1.0,
+        "THREATEN": 2.0
+      }
+    },
+    {
+      "id": "CH-JUN",
+      "name": "Constable June Pike",
+      "role": "partner",
+      "accusable": false,
+      "aliases": [
+        "June",
+        "Pike",
+        "constable",
+        "partner"
+      ],
+      "public": {
+        "summary": "The village constable, first on the scene. Her gran was in service at the Hall.",
+        "public_facts": [
+          "She knows the house"
+        ]
+      },
+      "secret": {
+        "summary": "None."
+      },
+      "voice": {
+        "design_instruction": "Thirties Northumbrian woman, practical, dry, loyal.",
+        "placeholder": {
+          "pitch": 1.05,
+          "rate": 1.0,
+          "voice_name_hint": "Fiona"
+        }
+      },
+      "baseline": {
+        "composure": 80,
+        "trust": 70,
+        "direction": "brisk, practical"
+      },
+      "tells": {}
+    }
+  ],
+  "cards": [
+    {
+      "id": "E-BOLT",
+      "kind": "evidence",
+      "title": "The bolted door",
+      "description": "The study door was bolted on the inside. Hester and Mr Wren broke the frame to get in at 10:55 PM.",
+      "found_at": "P-STUDY",
+      "role": "supporting",
+      "act": 1,
+      "keywords": [
+        "door",
+        "bolt",
+        "bolted",
+        "frame",
+        "locked"
+      ]
+    },
+    {
+      "id": "E-CLOCK",
+      "kind": "evidence",
+      "title": "The stopped mantel clock",
+      "description": "Knocked face-down onto the hearth. Its hands stopped at 10:40.",
+      "found_at": "P-STUDY",
+      "role": "supporting",
+      "act": 1,
+      "keywords": [
+        "clock",
+        "mantel",
+        "time",
+        "10:40"
+      ]
+    },
+    {
+      "id": "E-TEA",
+      "kind": "evidence",
+      "title": "Tea for two",
+      "description": "Two cups on the tray, both drained, both stone cold.",
+      "found_at": "P-STUDY",
+      "role": "herring",
+      "act": 1,
+      "keywords": [
+        "tea",
+        "cups",
+        "tray",
+        "two cups"
+      ],
+      "herring_resolution": "Hester sat with Mr Grale at half past nine about her pension and left at a quarter to ten. The tea was cold long before he died."
+    },
+    {
+      "id": "E-HATCH",
+      "kind": "evidence",
+      "title": "The dumbwaiter hatch",
+      "description": "Behind the panelling, a hatch unlatched from the inside. A tuft of grey cardigan wool is caught on the hinge.",
+      "found_at": "P-STUDY",
+      "role": "essential",
+      "proof_category": "physical",
+      "act": 2,
+      "keywords": [
+        "hatch",
+        "dumbwaiter",
+        "panel",
+        "panelling",
+        "wool",
+        "hinge"
+      ]
+    },
+    {
+      "id": "E-PAGE",
+      "kind": "evidence",
+      "title": "The unfinished page",
+      "description": "The page in the library typewriter stops mid-sentence, and the carbon beneath it is dated this morning. Nothing has been typed tonight.",
+      "found_at": "P-LIBRARY",
+      "role": "essential",
+      "proof_category": "alibi",
+      "act": 2,
+      "keywords": [
+        "page",
+        "typewriter",
+        "carbon",
+        "typing",
+        "typed"
+      ]
+    },
+    {
+      "id": "E-GLOVE",
+      "kind": "evidence",
+      "title": "The ink-stained glove",
+      "description": "Wedged in the dumbwaiter shaft above the pantry: a man's leather glove, the forefinger stained violet with copying ink.",
+      "found_at": "P-PANTRY",
+      "role": "essential",
+      "proof_category": "physical",
+      "act": 2,
+      "keywords": [
+        "glove",
+        "ink",
+        "violet",
+        "shaft"
+      ]
+    },
+    {
+      "id": "E-BLOTTER",
+      "kind": "evidence",
+      "title": "The blotter",
+      "description": "Held to the mirror, the blotter reads: '...must inform you that my secretary, Mr T. Wren, has sold forgeries under my name...'",
+      "found_at": "P-STUDY",
+      "role": "essential",
+      "proof_category": "motive",
+      "act": 3,
+      "keywords": [
+        "blotter",
+        "letter",
+        "mirror",
+        "forgeries",
+        "police"
+      ]
+    },
+    {
+      "id": "E-LEDGER",
+      "kind": "evidence",
+      "title": "Mr Wren's private ledger",
+      "description": "'Speed, Northumberland, 1611. Sold to Hartley, four hundred pounds.' The same Speed map still hangs in the study.",
+      "found_at": "P-LIBRARY",
+      "role": "essential",
+      "proof_category": "motive",
+      "act": 3,
+      "keywords": [
+        "ledger",
+        "sale",
+        "sold",
+        "speed",
+        "hartley"
+      ]
+    },
+    {
+      "id": "T-IRI-QUIET",
+      "kind": "testimony",
+      "title": "Iris: the library was silent",
+      "description": "\"I passed it at half ten. The lamp was lit and there was no typing at all. Nobody in there.\"",
+      "source_line": "L-IRI-QUIET",
+      "role": "essential",
+      "proof_category": "alibi",
+      "act": 2,
+      "keywords": [
+        "silent",
+        "quiet",
+        "half ten",
+        "iris",
+        "no typing"
+      ]
+    },
+    {
+      "id": "T-HES-PANTRY",
+      "kind": "testimony",
+      "title": "Hester: Mr Wren left the pantry",
+      "description": "\"At ten to eleven I saw Mr Wren come out of the pantry, brushing his sleeve.\"",
+      "source_line": "L-HES-PANTRY",
+      "role": "essential",
+      "proof_category": "alibi",
+      "act": 2,
+      "keywords": [
+        "pantry",
+        "back stairs",
+        "sleeve",
+        "hester",
+        "ten to eleven"
+      ]
+    },
+    {
+      "id": "T-IRI-DEALER",
+      "kind": "testimony",
+      "title": "Iris: the Edinburgh letter",
+      "description": "\"A dealer in Edinburgh wrote on Tuesday. Uncle went white and said 'Tobias' out loud.\"",
+      "source_line": "L-IRI-DEALER",
+      "role": "essential",
+      "proof_category": "motive",
+      "act": 3,
+      "keywords": [
+        "dealer",
+        "edinburgh",
+        "letter",
+        "tuesday"
+      ]
+    },
+    {
+      "id": "C-ALIBI",
+      "kind": "contradiction",
+      "title": "Wren was not in the library",
+      "description": "Nobody was typing in the library at half past ten. Tobias Wren's alibi is false.",
+      "role": "essential",
+      "proof_category": "alibi",
+      "act": 2,
+      "keywords": [
+        "alibi",
+        "library",
+        "lie"
+      ]
+    },
+    {
+      "id": "C-PHYS",
+      "kind": "contradiction",
+      "title": "Wren used the dumbwaiter",
+      "description": "His wool on the hatch, his glove in the shaft: Wren left the bolted study by the dumbwaiter.",
+      "role": "essential",
+      "proof_category": "physical",
+      "act": 2,
+      "keywords": [
+        "dumbwaiter",
+        "escape",
+        "physical"
+      ]
+    },
+    {
+      "id": "C-MOTIVE",
+      "kind": "contradiction",
+      "title": "Wren sold forgeries",
+      "description": "Grale had found out his secretary was selling forged maps, and was about to tell the police.",
+      "role": "essential",
+      "proof_category": "motive",
+      "act": 3,
+      "keywords": [
+        "forgery",
+        "forgeries",
+        "motive",
+        "maps"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "CL-TOB-LIB",
+      "speaker": "CH-TOB",
+      "text": "I was in the library, typing, from ten until Hester knocked.",
+      "is_true": false,
+      "heard_via": "B-TOB-WHERE"
+    },
+    {
+      "id": "CL-TOB-MAPS",
+      "speaker": "CH-TOB",
+      "text": "Every map in this house is genuine.",
+      "is_true": false,
+      "heard_via": "B-TOB-MAPS"
+    },
+    {
+      "id": "CL-TOB-NEVER",
+      "speaker": "CH-TOB",
+      "text": "I haven't been near the dumbwaiter since the war.",
+      "is_true": false,
+      "heard_via": "B-TOB-DUMB"
+    },
+    {
+      "id": "CL-IRI-CONS",
+      "speaker": "CH-IRI",
+      "text": "I was in the conservatory from ten until I heard Hester shout.",
+      "is_true": true,
+      "heard_via": "B-IRI-WHERE"
+    },
+    {
+      "id": "CL-HES-KITCHEN",
+      "speaker": "CH-HES",
+      "text": "I was in my kitchen all evening after his tea.",
+      "is_true": false,
+      "heard_via": "B-HES-WHERE",
+      "note": "She slipped out to the stable loft; a personal secret, not the crime."
+    }
+  ],
+  "contradictions": [
+    {
+      "id": "C-X-ALIBI",
+      "claim": "CL-TOB-LIB",
+      "cards": [
+        "E-PAGE",
+        "T-IRI-QUIET",
+        "T-HES-PANTRY"
+      ],
+      "result_beat": "B-TOB-CRACK-ALIBI",
+      "creates_card": "C-ALIBI",
+      "composure_delta": -15,
+      "opens_lock": "alibi"
+    },
+    {
+      "id": "C-X-PHYS",
+      "claim": "CL-TOB-NEVER",
+      "cards": [
+        "E-HATCH",
+        "E-GLOVE",
+        "T-HES-PANTRY"
+      ],
+      "result_beat": "B-TOB-CRACK-PHYS",
+      "creates_card": "C-PHYS",
+      "composure_delta": -15,
+      "opens_lock": "physical"
+    },
+    {
+      "id": "C-X-MOTIVE",
+      "claim": "CL-TOB-MAPS",
+      "cards": [
+        "E-BLOTTER",
+        "E-LEDGER",
+        "T-IRI-DEALER"
+      ],
+      "result_beat": "B-TOB-CRACK-MOTIVE",
+      "creates_card": "C-MOTIVE",
+      "composure_delta": -20,
+      "opens_lock": "motive"
+    }
+  ],
+  "links": [
+    {
+      "a": "E-LEDGER",
+      "b": "E-BLOTTER",
+      "creates": "C-MOTIVE",
+      "hunch_line": "The sale he wrote down, and the letter that would have ended him."
+    },
+    {
+      "a": "E-HATCH",
+      "b": "E-GLOVE",
+      "creates": "C-PHYS",
+      "hunch_line": "Wool on the hatch, a glove in the shaft. Somebody rode that box down."
+    }
+  ],
+  "storylets": [
+    {
+      "id": "B-JUN-LOCKED0",
+      "char": "CH-JUN",
+      "topic": "locked_room",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Bolted from the inside, they say. Have you looked at that door yet, sir?",
+          "direction": "brisk, practical",
+          "id": "L-JUN-LOCKED0-1"
+        }
+      ]
+    },
+    {
+      "id": "B-JUN-LOCKED",
+      "char": "CH-JUN",
+      "topic": "locked_room",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Bolt thrown from inside, and the only window painted shut since the old King died.",
+          "direction": "thinking aloud",
+          "id": "L-JUN-LOCKED-1"
+        },
+        {
+          "text": "Hang on. My gran was in service here before the war. She used to send his supper up in a box on a rope. There's a dumbwaiter behind that study panelling, sir. It runs down to the pantry.",
+          "direction": "suddenly certain",
+          "inline": [
+            {
+              "before_word": "dumbwaiter",
+              "direction": "leaning in"
+            }
+          ],
+          "id": "L-JUN-LOCKED-2"
+        }
+      ],
+      "requires": {
+        "cards_seen_all": [
+          "E-BOLT"
+        ]
+      },
+      "once": true,
+      "priority": 10,
+      "sets_flags": [
+        "BOTTLENECK_1"
+      ]
+    },
+    {
+      "id": "B-JUN-HINT0",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Start with the room itself, sir. The door, the mantel, that tray.",
+          "direction": "quiet, steady",
+          "id": "L-JUN-HINT0-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "FOLLOW_UP",
+        "SMALL_TALK"
+      ],
+      "priority": -1,
+      "requires": {
+        "flags_none": [
+          "BOTTLENECK_1"
+        ]
+      }
+    },
+    {
+      "id": "B-JUN-HINT1",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Somebody left that study without using the door. Ask them all where they were at twenty to eleven.",
+          "direction": "low",
+          "id": "L-JUN-HINT1-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "FOLLOW_UP",
+        "SMALL_TALK"
+      ],
+      "priority": -1,
+      "requires": {
+        "flags_all": [
+          "BOTTLENECK_1"
+        ],
+        "flags_none": [
+          "TOB_ALIBI"
+        ]
+      }
+    },
+    {
+      "id": "B-JUN-HINT2",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Mr Wren says he was typing. If he was, someone heard it, or the page in that machine shows it.",
+          "direction": "dry",
+          "id": "L-JUN-HINT2-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "FOLLOW_UP",
+        "SMALL_TALK"
+      ],
+      "priority": -1,
+      "requires": {
+        "flags_all": [
+          "TOB_ALIBI"
+        ],
+        "flags_none": [
+          "BOTTLENECK_2"
+        ]
+      }
+    },
+    {
+      "id": "B-JUN-HINT3",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "He lied about the library. A man doesn't lie for nothing. Ask about the maps, and have a proper look at the old man's desk.",
+          "direction": "grim",
+          "id": "L-JUN-HINT3-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "FOLLOW_UP",
+        "SMALL_TALK"
+      ],
+      "priority": -1,
+      "requires": {
+        "flags_all": [
+          "BOTTLENECK_2"
+        ],
+        "flags_none": [
+          "CH-TOB_LOCKS_OPEN"
+        ]
+      }
+    },
+    {
+      "id": "B-JUN-HINT4",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "That's the whole of it, sir: where he really was, why he did it, and what he left behind. Accuse when you're ready.",
+          "direction": "certain",
+          "id": "L-JUN-HINT4-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "FOLLOW_UP",
+        "SMALL_TALK"
+      ],
+      "priority": -1,
+      "requires": {
+        "flags_all": [
+          "CH-TOB_LOCKS_OPEN"
+        ]
+      }
+    },
+    {
+      "id": "B-JUN-VICTIM",
+      "char": "CH-JUN",
+      "topic": "victim",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Edmund Grale. Fifty years collecting old maps. Hit once, from behind, with that brass bookend. He'd not have seen it coming.",
+          "direction": "flat, professional",
+          "id": "L-JUN-VICTIM-1"
+        }
+      ]
+    },
+    {
+      "id": "B-JUN-CLOCK",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "One o'clock, sir. The coroner's van gets through at two, and then it's the county's case, not ours.",
+          "direction": "checking her watch",
+          "id": "L-JUN-CLOCK-1"
+        }
+      ],
+      "intents": [
+        "SCHEDULED"
+      ]
+    },
+    {
+      "id": "B-JUN-LATE",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Half past one. Whatever we've got, we'd best decide soon.",
+          "direction": "urgent, quiet",
+          "id": "L-JUN-LATE-1"
+        }
+      ],
+      "intents": [
+        "SCHEDULED"
+      ]
+    },
+    {
+      "id": "B-JUN-KEEP",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Then I never heard about any nephew in the stable loft. Right you are, sir.",
+          "direction": "warm, conspiratorial",
+          "id": "L-JUN-KEEP-1"
+        }
+      ],
+      "intents": [
+        "SCHEDULED"
+      ]
+    },
+    {
+      "id": "B-JUN-REPORT",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I'll ring the barracks in the morning. She won't thank us for it, sir.",
+          "direction": "subdued",
+          "id": "L-JUN-REPORT-1"
+        }
+      ],
+      "intents": [
+        "SCHEDULED"
+      ]
+    },
+    {
+      "id": "B-TOB-HELLO",
+      "char": "CH-TOB",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Inspector. A dreadful night. Anything I can do, of course.",
+          "direction": "smooth, helpful",
+          "id": "L-TOB-HELLO-1"
+        }
+      ],
+      "intents": [
+        "SMALL_TALK"
+      ]
+    },
+    {
+      "id": "B-TOB-WHERE",
+      "char": "CH-TOB",
+      "topic": "whereabouts",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I was in the library, typing Mr Grale's correspondence, from ten o'clock until Hester came hammering on the study door.",
+          "direction": "precise, rehearsed",
+          "paired": [
+            {
+              "tag": "emphasis",
+              "words": "typing"
+            }
+          ],
+          "id": "L-TOB-WHERE-1"
+        }
+      ],
+      "utters_claims": [
+        "CL-TOB-LIB"
+      ],
+      "sets_flags": [
+        "TOB_ALIBI"
+      ]
+    },
+    {
+      "id": "B-TOB-MAPS",
+      "char": "CH-TOB",
+      "topic": "maps",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Every map in this house is genuine. I catalogued them myself. I'd stake my name on it.",
+          "direction": "proud, a touch too quick",
+          "id": "L-TOB-MAPS-1"
+        }
+      ],
+      "utters_claims": [
+        "CL-TOB-MAPS"
+      ]
+    },
+    {
+      "id": "B-TOB-DUMB",
+      "char": "CH-TOB",
+      "topic": "dumbwaiter",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "That old thing? I haven't been near it since the war. I doubt it even runs.",
+          "direction": "light, dismissive",
+          "id": "L-TOB-DUMB-1"
+        }
+      ],
+      "requires": {
+        "flags_all": [
+          "BOTTLENECK_1"
+        ]
+      },
+      "utters_claims": [
+        "CL-TOB-NEVER"
+      ]
+    },
+    {
+      "id": "B-TOB-VICTIM",
+      "char": "CH-TOB",
+      "topic": "victim",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Twelve years I worked for him. He could be hard. He was never unjust.",
+          "direction": "measured, eyes down",
+          "id": "L-TOB-VICTIM-1"
+        }
+      ]
+    },
+    {
+      "id": "B-TOB-LOCKED",
+      "char": "CH-TOB",
+      "topic": "locked_room",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Hester and I broke the frame together. He was on the hearthrug. I'd rather not describe it.",
+          "direction": "quiet",
+          "id": "L-TOB-LOCKED-1"
+        }
+      ]
+    },
+    {
+      "id": "B-TOB-PRESS",
+      "char": "CH-TOB",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I've given you my answer, Inspector. Twice now.",
+          "direction": "clipped, touching his cuff",
+          "id": "L-TOB-PRESS-1"
+        }
+      ],
+      "intents": [
+        "PRESS",
+        "THREATEN"
+      ],
+      "composure_delta": -8,
+      "trust_delta": -5
+    },
+    {
+      "id": "B-TOB-CORNERED",
+      "char": "CH-TOB",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "You've built your little case, haven't you. Then make your accusation. Properly.",
+          "direction": "very still, cold",
+          "id": "L-TOB-CORNERED-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "PRESS",
+        "DEMAND_CONFESSION",
+        "FOLLOW_UP"
+      ],
+      "priority": 20,
+      "requires": {
+        "flags_all": [
+          "CH-TOB_LOCKS_OPEN"
+        ]
+      }
+    },
+    {
+      "id": "B-TOB-CRACK-ALIBI",
+      "char": "CH-TOB",
+      "topic": "whereabouts",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "All right. I stepped out of the library. For air. A man may step out.",
+          "direction": "a breath too long",
+          "id": "L-TOB-CRACK-ALIBI-1"
+        },
+        {
+          "text": "But I never went near that dumbwaiter, if that's what you're thinking.",
+          "direction": "recovering, too firm",
+          "id": "L-TOB-CRACK-ALIBI-2"
+        }
+      ],
+      "intents": [
+        "PRESENT"
+      ],
+      "utters_claims": [
+        "CL-TOB-NEVER"
+      ],
+      "sets_flags": [
+        "BOTTLENECK_2"
+      ]
+    },
+    {
+      "id": "B-TOB-CRACK-PHYS",
+      "char": "CH-TOB",
+      "topic": "dumbwaiter",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Grey wool. Ink. Half the county wears grey wool, Inspector.",
+          "direction": "shaky, then a forced laugh",
+          "id": "L-TOB-CRACK-PHYS-1"
+        }
+      ],
+      "intents": [
+        "PRESENT"
+      ]
+    },
+    {
+      "id": "B-TOB-CRACK-MOTIVE",
+      "char": "CH-TOB",
+      "topic": "maps",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "A few bad maps. He'd have sent me to prison over a few bad maps. He never even needed the money.",
+          "direction": "bitter, quiet",
+          "inline": [
+            {
+              "before_word": "prison",
+              "direction": "voice catching"
+            }
+          ],
+          "id": "L-TOB-CRACK-MOTIVE-1"
+        }
+      ],
+      "intents": [
+        "PRESENT"
+      ]
+    },
+    {
+      "id": "B-TOB-CONFESS",
+      "char": "CH-TOB",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "He'd written to the police. He showed me the letter, as if I'd thank him for the warning.",
+          "direction": "cold and level",
+          "id": "L-TOB-CONFESS-1"
+        },
+        {
+          "text": "I picked up the bookend. I don't remember deciding to. Then the clock went over, and it was twenty to eleven.",
+          "direction": "almost relieved",
+          "id": "L-TOB-CONFESS-2"
+        },
+        {
+          "text": "The dumbwaiter was the only way out. I bolted the door so it would look like his heart. Hester was right there in the pantry. She very nearly saw me.",
+          "direction": "quietly, finished",
+          "id": "L-TOB-CONFESS-3"
+        }
+      ],
+      "intents": [
+        "ACCUSE"
+      ],
+      "requires": {
+        "flags_all": [
+          "CH-TOB_CONFESSES"
+        ]
+      }
+    },
+    {
+      "id": "B-IRI-HELLO",
+      "char": "CH-IRI",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I keep thinking he'll ring for his cocoa.",
+          "direction": "brittle, trying to smile",
+          "id": "L-IRI-HELLO-1"
+        }
+      ],
+      "intents": [
+        "SMALL_TALK"
+      ]
+    },
+    {
+      "id": "B-IRI-WHERE",
+      "char": "CH-IRI",
+      "topic": "whereabouts",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "In the conservatory, from ten until I heard Hester shouting. I was potting the orchids he gave me. Ask the orchids.",
+          "direction": "dry, tired",
+          "id": "L-IRI-WHERE-1"
+        }
+      ],
+      "utters_claims": [
+        "CL-IRI-CONS"
+      ]
+    },
+    {
+      "id": "B-IRI-WILL",
+      "char": "CH-IRI",
+      "topic": "will",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Yes, I inherit. He told me at Christmas. I'd give it all back to have him grumbling at breakfast.",
+          "direction": "sharp, then soft",
+          "id": "L-IRI-WILL-1"
+        }
+      ]
+    },
+    {
+      "id": "B-IRI-LIBRARY0",
+      "char": "CH-IRI",
+      "topic": "library",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "The library? That's Tobias's kingdom. I don't go in.",
+          "direction": "indifferent",
+          "id": "L-IRI-LIBRARY0-1"
+        }
+      ]
+    },
+    {
+      "id": "B-IRI-LIBRARY",
+      "char": "CH-IRI",
+      "topic": "library",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I passed it at half ten, on my way for more compost. The door was ajar and the lamp was lit.",
+          "direction": "remembering",
+          "id": "L-IRI-QUIET"
+        },
+        {
+          "text": "And it was silent. No typing at all. Nobody in there.",
+          "direction": "realising",
+          "paired": [
+            {
+              "tag": "emphasis",
+              "words": "silent"
+            }
+          ],
+          "id": "L-IRI-LIBRARY-2"
+        }
+      ],
+      "requires": {
+        "flags_all": [
+          "TOB_ALIBI"
+        ]
+      },
+      "priority": 5,
+      "reveals": [
+        "T-IRI-QUIET"
+      ]
+    },
+    {
+      "id": "B-IRI-MAPS0",
+      "char": "CH-IRI",
+      "topic": "maps",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Uncle's maps were his children. I never cared for them, which he forgave, mostly.",
+          "direction": "fond",
+          "id": "L-IRI-MAPS0-1"
+        }
+      ]
+    },
+    {
+      "id": "B-IRI-DEALER",
+      "char": "CH-IRI",
+      "topic": "maps",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Now you say it. On Tuesday a letter came from a dealer in Edinburgh. Uncle went white, and he said 'Tobias' out loud, to nobody.",
+          "direction": "slowly, frightened",
+          "id": "L-IRI-DEALER"
+        }
+      ],
+      "requires": {
+        "flags_all": [
+          "BOTTLENECK_2"
+        ]
+      },
+      "priority": 5,
+      "reveals": [
+        "T-IRI-DEALER"
+      ]
+    },
+    {
+      "id": "B-IRI-VICTIM",
+      "char": "CH-IRI",
+      "topic": "victim",
+      "mode": "writer",
+      "lines": [
+        {
+          "text": "He was difficult and generous and he smelled of pipe smoke and old paper.",
+          "direction": "grief held down",
+          "id": "L-IRI-VICTIM-1"
+        }
+      ],
+      "facts_allowed": [
+        "Edmund Grale collected maps for fifty years",
+        "Iris is his niece"
+      ]
+    },
+    {
+      "id": "B-IRI-PRESS",
+      "char": "CH-IRI",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Shout if you like, Inspector. I was among the ferns.",
+          "direction": "cool contempt",
+          "id": "L-IRI-PRESS-1"
+        }
+      ],
+      "intents": [
+        "PRESS",
+        "THREATEN"
+      ],
+      "composure_delta": -5,
+      "trust_delta": -5
+    },
+    {
+      "id": "B-IRI-TEA",
+      "char": "CH-IRI",
+      "topic": "tea",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Hester always takes him tea at half nine. Sometimes she sits with him. They're old friends.",
+          "direction": "matter of fact",
+          "id": "L-IRI-TEA-1"
+        }
+      ]
+    },
+    {
+      "id": "B-HES-HELLO",
+      "char": "CH-HES",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I've put the kettle on, sir. It's all I know how to do tonight.",
+          "direction": "shaky, kind",
+          "id": "L-HES-HELLO-1"
+        }
+      ],
+      "intents": [
+        "SMALL_TALK"
+      ]
+    },
+    {
+      "id": "B-HES-WHERE",
+      "char": "CH-HES",
+      "topic": "whereabouts",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "After his tea I was in my kitchen all evening, sir. Never left it, not till I went up to knock.",
+          "direction": "too quick",
+          "id": "L-HES-WHERE-1"
+        }
+      ],
+      "utters_claims": [
+        "CL-HES-KITCHEN"
+      ]
+    },
+    {
+      "id": "B-HES-TEA",
+      "char": "CH-HES",
+      "topic": "tea",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Two cups, yes. I sat with him at half past nine about my pension. He said I'd want for nothing. I left at a quarter to ten.",
+          "direction": "tearful, honest",
+          "id": "L-HES-TEA-1"
+        }
+      ]
+    },
+    {
+      "id": "B-HES-PANTRY0",
+      "char": "CH-HES",
+      "topic": "dumbwaiter",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I don't know anything about that old lift, sir. Nothing at all.",
+          "direction": "frightened, defensive",
+          "id": "L-HES-PANTRY0-1"
+        }
+      ],
+      "intents": [
+        "ASK",
+        "FOLLOW_UP",
+        "PRESS"
+      ],
+      "requires": {
+        "flags_all": [
+          "BOTTLENECK_1"
+        ]
+      },
+      "composure_delta": -5
+    },
+    {
+      "id": "B-HES-PANTRY",
+      "char": "CH-HES",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I wasn't in my kitchen the whole time. I took a plate out to the stable loft. My sister's boy is hiding up there from his call-up.",
+          "direction": "whispering, ashamed",
+          "id": "L-HES-PANTRY"
+        },
+        {
+          "text": "Coming back up the back stairs, at ten to eleven, I saw Mr Wren come out of the pantry. Brushing his sleeve, he was.",
+          "direction": "steadier",
+          "id": "L-HES-PANTRY-2"
+        }
+      ],
+      "intents": [
+        "REASSURE"
+      ],
+      "requires": {
+        "flags_all": [
+          "BOTTLENECK_1"
+        ]
+      },
+      "priority": 5,
+      "once": true,
+      "reveals": [
+        "T-HES-PANTRY"
+      ],
+      "trust_delta": 10
+    },
+    {
+      "id": "B-HES-REASSURE0",
+      "char": "CH-HES",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "You're kind, sir. But there's nothing to tell.",
+          "direction": "softening",
+          "id": "L-HES-REASSURE0-1"
+        }
+      ],
+      "intents": [
+        "REASSURE"
+      ],
+      "trust_delta": 5
+    },
+    {
+      "id": "B-HES-VICTIM",
+      "char": "CH-HES",
+      "topic": "victim",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Forty years I kept house for him. He was a good master. Particular. Good.",
+          "direction": "breaking a little",
+          "id": "L-HES-VICTIM-1"
+        }
+      ]
+    },
+    {
+      "id": "B-HES-LOCKED",
+      "char": "CH-HES",
+      "topic": "locked_room",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "I knocked and knocked. Mr Wren came running from the library end, and we put our shoulders to it.",
+          "direction": "shaky",
+          "id": "L-HES-LOCKED-1"
+        }
+      ]
+    },
+    {
+      "id": "B-END-TRUE",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Tobias Wren, I'm arresting you for the murder of Edmund Grale. Mind the step, sir. It's slippery.",
+          "direction": "quiet, final",
+          "id": "L-END-TRUE-1"
+        },
+        {
+          "text": "Nicely done, Inspector. The van's at the gate.",
+          "direction": "relieved",
+          "id": "L-END-TRUE-2"
+        }
+      ],
+      "intents": [
+        "ACCUSE"
+      ]
+    },
+    {
+      "id": "B-END-HALF",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "You've the right man, sir, but that story won't stand up. His solicitor will have him home by Friday.",
+          "direction": "worried",
+          "id": "L-END-HALF-1"
+        }
+      ],
+      "intents": [
+        "ACCUSE"
+      ]
+    },
+    {
+      "id": "B-END-IRIS",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Miss Grale? She was in the conservatory, sir. And the real one's watching us take her.",
+          "direction": "uneasy",
+          "id": "L-END-IRIS-1"
+        }
+      ],
+      "intents": [
+        "ACCUSE"
+      ]
+    },
+    {
+      "id": "B-END-HESTER",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "Hester? Forty years in this house, sir, and her only crime's a plate of supper for a frightened boy.",
+          "direction": "dismayed",
+          "id": "L-END-HESTER-1"
+        }
+      ],
+      "intents": [
+        "ACCUSE"
+      ]
+    },
+    {
+      "id": "B-END-DAWN",
+      "char": "CH-JUN",
+      "topic": "*",
+      "mode": "authored",
+      "lines": [
+        {
+          "text": "That's the van, sir. It's the county's case now. And whoever did it slept in their own bed tonight.",
+          "direction": "flat, tired",
+          "id": "L-END-DAWN-1"
+        }
+      ],
+      "intents": [
+        "SCHEDULED"
+      ]
+    }
+  ],
+  "solution": {
+    "who": "CH-TOB",
+    "how": [
+      "Struck him with the brass bookend, then escaped down the dumbwaiter"
+    ],
+    "when": [
+      "10:40 PM"
+    ],
+    "why": [
+      "Grale had found out he was selling forged maps"
+    ],
+    "proof": {
+      "alibi": [
+        "C-ALIBI"
+      ],
+      "motive": [
+        "C-MOTIVE"
+      ],
+      "physical": [
+        "C-PHYS"
+      ]
+    },
+    "confession_beat": "B-TOB-CONFESS",
+    "decoys": {
+      "how": [
+        "Poisoned his tea",
+        "Struck him, then climbed out of the window",
+        "Strangled him with a curtain cord"
+      ],
+      "when": [
+        "9:30 PM",
+        "10:10 PM",
+        "10:55 PM"
+      ],
+      "why": [
+        "To inherit the estate sooner",
+        "To keep a hidden nephew secret",
+        "A quarrel over the will"
+      ]
+    }
+  },
+  "endings": [
+    {
+      "id": "END-TRUE",
+      "title": "The Box on the Rope",
+      "condition": "TRUE_SOLUTION",
+      "beat": "B-END-TRUE",
+      "epilogue_choices": [
+        "Tell Iris the whole truth about the forgeries",
+        "Let the forged maps stay on the walls"
+      ]
+    },
+    {
+      "id": "END-HALF",
+      "title": "The Right Man, the Wrong Story",
+      "condition": "RIGHT_WHO_WRONG_CASE",
+      "beat": "B-END-HALF"
+    },
+    {
+      "id": "END-IRIS",
+      "title": "The Heir in Handcuffs",
+      "condition": "WHO:CH-IRI",
+      "beat": "B-END-IRIS"
+    },
+    {
+      "id": "END-HESTER",
+      "title": "Forty Years' Service",
+      "condition": "WHO:CH-HES",
+      "beat": "B-END-HESTER"
+    },
+    {
+      "id": "END-DAWN",
+      "title": "The County's Case",
+      "condition": "TIMEOUT",
+      "beat": "B-END-DAWN"
+    }
+  ],
+  "timeline": [
+    {
+      "t": 1290,
+      "event": "Hester brings tea for two; sits with Grale about her pension.",
+      "who": [
+        "CH-HES",
+        "CH-EDM"
+      ],
+      "traces": [
+        "E-TEA"
+      ]
+    },
+    {
+      "t": 1335,
+      "event": "Hester takes a plate to her nephew in the stable loft.",
+      "who": [
+        "CH-HES"
+      ]
+    },
+    {
+      "t": 1340,
+      "event": "Grale shows Tobias the letter he has written to the police.",
+      "who": [
+        "CH-TOB",
+        "CH-EDM"
+      ],
+      "traces": [
+        "E-BLOTTER"
+      ]
+    },
+    {
+      "t": 1350,
+      "event": "Iris passes the empty, silent library.",
+      "who": [
+        "CH-IRI"
+      ],
+      "traces": [
+        "T-IRI-QUIET",
+        "E-PAGE"
+      ]
+    },
+    {
+      "t": 1360,
+      "event": "Tobias strikes Grale with the brass bookend; the mantel clock falls and stops.",
+      "who": [
+        "CH-TOB",
+        "CH-EDM"
+      ],
+      "traces": [
+        "E-CLOCK"
+      ]
+    },
+    {
+      "t": 1363,
+      "event": "Tobias bolts the door, rides the dumbwaiter down; wool snags, glove drops.",
+      "who": [
+        "CH-TOB"
+      ],
+      "traces": [
+        "E-BOLT",
+        "E-HATCH",
+        "E-GLOVE"
+      ]
+    },
+    {
+      "t": 1370,
+      "event": "Hester, back on the stairs, sees Tobias leave the pantry.",
+      "who": [
+        "CH-HES",
+        "CH-TOB"
+      ],
+      "traces": [
+        "T-HES-PANTRY"
+      ]
+    },
+    {
+      "t": 1375,
+      "event": "Hester knocks; Tobias appears from the library end; they break the door.",
+      "who": [
+        "CH-HES",
+        "CH-TOB"
+      ],
+      "traces": [
+        "E-BOLT"
+      ]
+    },
+    {
+      "t": 1410,
+      "event": "The Inspector arrives; Constable Pike is already there.",
+      "who": [
+        "CH-JUN"
+      ]
+    }
+  ],
+  "hunch": [
+    {
+      "id": "H-TEA",
+      "trigger": "card_seen:E-TEA",
+      "line": {
+        "id": "L-H-TEA",
+        "text": "Two cups, both cold. Somebody kept him company, but hours ago, by the feel of it."
+      }
+    },
+    {
+      "id": "H-CLOCK",
+      "trigger": "card_seen:E-CLOCK",
+      "line": {
+        "id": "L-H-CLOCK",
+        "text": "Clocks don't jump off mantels on their own. Twenty to eleven, then."
+      }
+    },
+    {
+      "id": "H-TOB",
+      "trigger": "tell:CH-TOB",
+      "line": {
+        "id": "L-H-TOB",
+        "text": "He touched his cuff when he said it. Twice."
+      }
+    },
+    {
+      "id": "H-ALIBI",
+      "trigger": "claim_broken:CL-TOB-LIB",
+      "line": {
+        "id": "L-H-ALIBI",
+        "text": "If he wasn't in the library, he was somewhere he didn't want to be seen leaving."
+      }
+    }
+  ],
+  "refusals": {
+    "*": {
+      "META": [
+        {
+          "id": "R-META-1",
+          "text": "I'm sorry, Inspector, I don't follow. Is that a London expression?",
+          "direction": "puzzled"
+        }
+      ],
+      "DEMAND_CONFESSION": [
+        {
+          "id": "R-CONF-1",
+          "text": "Confess? To what? I'll thank you to find some evidence first.",
+          "direction": "offended"
+        }
+      ],
+      "BARGAIN": [
+        {
+          "id": "R-BARG-1",
+          "text": "I don't make deals with policemen, and you shouldn't make them with suspects.",
+          "direction": "cold"
+        }
+      ],
+      "PRESENT": [
+        {
+          "id": "R-PRES-1",
+          "text": "I don't see what that has to do with anything I've said.",
+          "direction": "puzzled"
+        },
+        {
+          "id": "R-PRES-2",
+          "text": "And? That proves nothing about me.",
+          "direction": "unmoved"
+        }
+      ],
+      "*": [
+        {
+          "id": "R-ANY-1",
+          "text": "I've nothing more to say about that.",
+          "direction": "politely closed"
+        }
+      ]
+    },
+    "CH-TOB": {
+      "composed": [
+        {
+          "id": "R-TOB-C",
+          "text": "I'm afraid I can't help you there, Inspector.",
+          "direction": "smooth"
+        }
+      ],
+      "strained": [
+        {
+          "id": "R-TOB-S",
+          "text": "I've told you what I know. I have letters to finish.",
+          "direction": "clipped"
+        }
+      ],
+      "cracking": [
+        {
+          "id": "R-TOB-K",
+          "text": "Must we? I've had a rather difficult night.",
+          "direction": "breath unsteady"
+        }
+      ]
+    },
+    "CH-JUN": {
+      "*": [
+        {
+          "id": "R-JUN-1",
+          "text": "Couldn't tell you, sir. Try one of the others.",
+          "direction": "shrugging"
+        }
+      ]
+    }
+  },
+  "topics": [
+    {
+      "id": "whereabouts",
+      "label": "Where they were",
+      "keywords": [
+        "where",
+        "were you",
+        "tonight",
+        "evening",
+        "alibi",
+        "doing",
+        "ten o'clock",
+        "whereabouts"
+      ]
+    },
+    {
+      "id": "maps",
+      "label": "The map collection",
+      "keywords": [
+        "map",
+        "maps",
+        "collection",
+        "forgery",
+        "forged",
+        "fake",
+        "genuine",
+        "dealer",
+        "speed"
+      ]
+    },
+    {
+      "id": "locked_room",
+      "label": "The locked room",
+      "keywords": [
+        "door",
+        "bolt",
+        "bolted",
+        "locked",
+        "lock",
+        "sealed",
+        "break in",
+        "broke"
+      ]
+    },
+    {
+      "id": "dumbwaiter",
+      "label": "The dumbwaiter",
+      "keywords": [
+        "dumbwaiter",
+        "hatch",
+        "pantry",
+        "shaft",
+        "lift",
+        "back stairs",
+        "rope"
+      ]
+    },
+    {
+      "id": "library",
+      "label": "The library",
+      "keywords": [
+        "library",
+        "typing",
+        "typewriter",
+        "typed",
+        "hear",
+        "heard"
+      ]
+    },
+    {
+      "id": "victim",
+      "label": "Edmund Grale",
+      "keywords": [
+        "grale",
+        "edmund",
+        "uncle",
+        "master",
+        "victim",
+        "body",
+        "dead"
+      ]
+    },
+    {
+      "id": "tea",
+      "label": "The tea tray",
+      "keywords": [
+        "tea",
+        "cup",
+        "cups",
+        "tray"
+      ]
+    },
+    {
+      "id": "will",
+      "label": "The will",
+      "keywords": [
+        "will",
+        "inherit",
+        "inheritance",
+        "estate",
+        "heir"
+      ]
+    }
+  ],
+  "choices": [
+    {
+      "id": "CHOICE-NEPHEW",
+      "prompt": "Hester has told you about her nephew hiding from his call-up. Put him in your report?",
+      "requires": {
+        "cards_seen_all": [
+          "T-HES-PANTRY"
+        ]
+      },
+      "options": [
+        {
+          "id": "keep",
+          "label": "Leave the boy out of it",
+          "sets_flags": [
+            "HES_KEPT"
+          ],
+          "beat": "B-JUN-KEEP"
+        },
+        {
+          "id": "report",
+          "label": "Report him",
+          "sets_flags": [
+            "HES_REPORTED"
+          ],
+          "beat": "B-JUN-REPORT"
+        }
+      ]
+    }
+  ]
+}

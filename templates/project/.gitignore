@@ -1,0 +1,6 @@
+.env
+cache/
+recordings/
+studio/board.json.lock
+studio/board.json.tmp
+*.blend1
