@@ -21,6 +21,17 @@ You review the character-artist, the blender-artist and the ui-designer.
 
 A regeneration is always a fresh generation with the fix written into the prompt. No chained edits.
 
+## The live gate (score what the player sees)
+- Realism is scored on **live in-engine captures** from real clicks at the target resolution, laid out
+  as live | offline render | reference sheet. Never score the offline render alone.
+- Score each axis 1–10 (characters, environments, lighting and grade, staging and camera, UI over the
+  scene), list P0 defects a player would notice, and give the top 5 gaps with a fix each.
+- **One medium.** People and rooms share one rendering hand. Painted people in rendered rooms, or the
+  reverse, reads as fake.
+- A realism note applies to every character and every room, not only the one the publisher named.
+- Check: any P0 defect, a live score more than 1 point under the render, or an axis under the bar sends
+  it back.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

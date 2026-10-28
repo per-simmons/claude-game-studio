@@ -8,7 +8,8 @@ the render against photographs.
 ## 0. The bar
 Every final render must pass this check: *"Shown next to a real photo of the same kind of space, would a
 stranger believe both are photographs?"* The art-director scores each render 1–10 against a reference photo.
-Anything under 8 goes back with notes. Greybox is a layout tool, never a final.
+Anything under 8 goes back with notes. Greybox is a layout tool, never a final. In a real-time game
+the bar applies to the **live frame the player sees**, not only the Cycles render (§10).
 
 ## 1. Collect references before you model
 - Gather 6–12 reference photos of the real thing: a period interior, the object, the light at that time of
@@ -81,3 +82,17 @@ If a scene still scores under 7 after 4 rounds, keep the Blender render as the *
 pass**, and paint over it with the image generator in edit mode, with the render as the input image ("keep the
 geometry and lighting exactly, make every surface photoreal"). Label it in CREDITS.md as a hybrid. Never ship a
 greybox as final art.
+- **A hybrid is a publisher decision at the gate, never a silent fallback.** Shipped hybrids shown as flat
+  stills drew the publisher's note "This looks like GPT image gen work." If the game promises 3D, the
+  fallback is the Cycles render itself, or another realism round.
+
+## 10. The render-to-live gap (real-time engines)
+A baked diffuse pass makes metals go flat or black, because metalness and roughness don't bake. Close the gap
+before scoring:
+- Hero metals, glass and porcelain stay live-lit, with a reflection probe or box-projected room environment.
+- Window exteriors are real (rendered plates or CC0 assets with depth and light), never a gradient or blur.
+- Higher-resolution lightmaps for close-up hero objects. A per-scene grade calibrated to the Cycles still
+  (within about ±0.25 EV), with the shadow floor matched.
+- Keep the frame-rate target (60 fps at 1920×1080 on the target machine), measured headless on a real GPU.
+- Check: a contact sheet per room of live | Cycles | reference, scored by the art-director (`art-director.md`,
+  the live gate).
