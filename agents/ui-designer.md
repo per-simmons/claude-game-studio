@@ -10,8 +10,8 @@ model: inherit
 - A screen flow diagram.
 - Wireframes in HTML/CSS.
 - The UI code in the engine.
-- An accessibility checklist: captions always on, typing as an alternative to the mic, replay any
-  line, colour-blind-safe board.
+- An accessibility checklist: captions always on, replay any line, colour-blind-safe board. A second
+  input method (mic, free typing) is a setting, never an extra control on the main screen.
 
 ## Quality bar
 - A newcomer can operate the game within 60 seconds.
@@ -28,6 +28,18 @@ model: inherit
 - **No production metadata** in the default UI: stage directions, IDs and debug text live behind a
   video or debug flag.
 - Check: the engineer's word-budget e2e.
+
+## One obvious next action
+- **Exactly one primary action** and one plain-words objective at every step. Everything else is hidden
+  until it's needed, or sits behind one small secondary control.
+- **Choices are full sentences** the player character would say ("Where were you last night?"), never
+  bare topic nouns ("Last night"). At most 4, one marked "Suggested".
+- **Moving on** is one button that names where it goes ("Go to the kitchen →"), shown only once the
+  goal is met. Never a list of destinations.
+- **Fewest controls.** Remove every control the current step doesn't need.
+- **Mysteries only:** presenting evidence is one of the choices, named by the item ("Show her the
+  letter"). No side tray, no connector lines.
+- Check: the engineer's one-action e2e and choice-label lint.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

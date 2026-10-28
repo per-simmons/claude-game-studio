@@ -34,6 +34,9 @@ model: inherit
   glossary.
 - **Word budget:** an e2e that counts visible words at every golden-path step: at most 20 outside
   the caption, 40 in player-opened overlays. Log before/after counts in the report.
+- **One action:** an e2e that finds exactly one primary affordance (`[data-primary]`) and one
+  objective at every step, plus a lint that every choice label is a full sentence (a question, or
+  starts with a verb).
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
