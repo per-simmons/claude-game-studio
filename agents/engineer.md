@@ -54,6 +54,9 @@ model: inherit
   fails if a cut line's ID appears in any player-visible log, journal or transcript.
 - **Scene changes:** capture every scene change at 10 fps from a real click and compare each frame with
   the fallback stills; any frame that matches a still fails.
+- **Lip sync and framing:** mouths are driven from the audio (baked per-line curves where available,
+  visemes from word timings as the fallback) and stay within 80 ms of the audio, measured. At each line
+  start a probe checks the speaker is on screen, at least 35% of frame height, and in focus.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

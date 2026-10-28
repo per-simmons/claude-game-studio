@@ -32,6 +32,19 @@ A regeneration is always a fresh generation with the fix written into the prompt
 - Check: any P0 defect, a live score more than 1 point under the render, or an axis under the bar sends
   it back.
 
+## Faces and people who talk
+- **Gate first.** A new character or face pipeline is proven end to end on one to three characters
+  (a 10-second talking clip plus 100% crops) and scored against what it replaces. Roll out only if it
+  is clearly better; otherwise keep the fallback and log the evidence.
+- **100% crops on every character:** hands read as separate fingers; every open mouth shape shows teeth,
+  tongue or a dark-red interior, never flat black; facial hair is separate from the lips so the mouth
+  moves under it; hair isn't one clay shell; no smear at collars, ties or texture seams.
+- **See them talk.** Whoever is speaking is lit by the room, in focus, at least 35% of frame height when
+  their line starts, and framed as a conversation (a real over-the-shoulder, the speaker on a thirds
+  mark). A wide that holds a tiny or blurred speaker cuts to the speaker.
+- Check: a crop sheet per character of every open mouth shape and both hands, and the engineer's
+  lip-sync and framing probes.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),
