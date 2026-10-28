@@ -60,6 +60,16 @@ model: inherit
 - One name per thing: the hover label, the card title and the inventory entry match.
 - Check: the engineer's UI probe reports 0 problems on every screen before the art-director sees it.
 
+## Mysteries only
+- **The journal is a board.** People, evidence and the timeline are pinned on one board the player can
+  pan and zoom, with the victim pinned first. Tabs are one plain word ("People"), with no subtitles or
+  colour bars. Clicking a person turns their card over: their role, what you've learned and what
+  they've said so far, never spoilers.
+- **Breaking a statement is one action.** Show the statement and one button named by the item; the
+  stamp lands and the scene continues by itself.
+- **Time pressure is visible but small:** a clock in a corner that visibly ticks, with the time left in
+  a few words.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),
