@@ -43,6 +43,9 @@ model: inherit
 - **Picking:** an occlusion-aware raycast against the real meshes, with a hover latch. The hover-sweep
   e2e moves the cursor in small steps across every pair of neighbouring interactables: the label
   changes at most once per boundary and always names the object under the cursor.
+- **UI probe:** a script that visits every screen at 1920×1080 and 1280×720 and reports overlapping or
+  clipped boxes, off-centre labels (over 2 px), mixed case, buttons with no press state, bare icons
+  without a label, and mismatched names for one object. It must report 0.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.

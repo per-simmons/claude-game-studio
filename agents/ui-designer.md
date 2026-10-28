@@ -51,6 +51,15 @@ model: inherit
   **No Back buttons.**
 - Check: the engineer's hover sweep, and the UI probe's Back-button count (must be 0).
 
+## Finish (tactile, consistent)
+- **Words, or icons with labels.** Never a bare icon the player has to click to decode. Tabs say what
+  they hold.
+- One spacing scale. Every button's label is centred, in one case style (no stray ALL CAPS), with an
+  on-brand press state that visibly depresses and springs back. No pulsing glow.
+- Every X is optically centred. Nothing overlaps or clips at 1920×1080 and 1280×720.
+- One name per thing: the hover label, the card title and the inventory entry match.
+- Check: the engineer's UI probe reports 0 problems on every screen before the art-director sees it.
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

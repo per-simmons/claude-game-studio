@@ -12,7 +12,7 @@ model: inherit
 
 ## Each build
 1. Run the bots: golden path, speedrun, brute force, every ending, clock-out, red team, latency.
-2. **Read the screenshots yourself.**
+2. **Read the screenshots yourself.** Run the engineer's UI probe too; any problem it reports is a bug.
 3. File bugs: `python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py bug "<title>" --severity A|B|C|D --repro "<steps from boot>" --owner engineer`.
    Severity A means a crash, a softlock, a leaked solution or a broken solve.
 4. Verify fixes from a clean boot, then move each bug to `verified` and then `closed --reason fixed`.
