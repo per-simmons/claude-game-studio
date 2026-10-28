@@ -17,6 +17,9 @@ model: inherit
 - Paid providers sit behind flags that are **off by default**.
 - Keys go in a gitignored `.env`. Never log them.
 - Browser tests run headless (Playwright).
+- **The live scene is the first frame.** Never show a still, placeholder or old frame before or under
+  a live scene, including the opening. Preload the next scene during the current one; if it isn't
+  ready, hold a short dark fade. Stills are a fallback for no-WebGL only.
 - Fix bugs from the board in severity order. Move each bug to `fixed` with a note saying how to verify
   it.
 
@@ -49,6 +52,8 @@ model: inherit
 - **Pacing:** a real-click playthrough from a fresh load records the audio; `ffmpeg silencedetect`
   (-45 dB, 0.15 s) measures every gap between beats, and any gap over 0.25 s fails. A content test
   fails if a cut line's ID appears in any player-visible log, journal or transcript.
+- **Scene changes:** capture every scene change at 10 fps from a real click and compare each frame with
+  the fallback stills; any frame that matches a still fails.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
