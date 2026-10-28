@@ -41,6 +41,16 @@ model: inherit
   letter"). No side tray, no connector lines.
 - Check: the engineer's one-action e2e and choice-label lint.
 
+## Picking and examining
+- **Precise picking.** The outline shows exactly what a click will get. A small thing on top wins over
+  a big one under it, and the hover never flickers between neighbours. Background furniture that
+  isn't interactable never takes the hover. The camera holds still while the player aims.
+- **Examine flow.** A click opens the thing large. A keeper gets one button ("Keep it", or the game's
+  own word) that flies it to the inventory and returns to the scene by itself. Anything else closes by
+  itself after the player's line. Every card has a centred X; click-outside and Esc close it too.
+  **No Back buttons.**
+- Check: the engineer's hover sweep, and the UI probe's Back-button count (must be 0).
+
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
 - **The board is the only way work moves.** Claim before you start (`python3 ${CLAUDE_PLUGIN_ROOT}/scripts/board/board.py claim <id> --by <your-name>`),

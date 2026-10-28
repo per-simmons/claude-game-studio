@@ -40,6 +40,9 @@ model: inherit
 - **Exploration:** an e2e that, during free exploration, no objective names a single object; the
   nudge never fires before the stall time; the found counter goes up on each find; and the onward
   button appears exactly when the key items are found.
+- **Picking:** an occlusion-aware raycast against the real meshes, with a hover latch. The hover-sweep
+  e2e moves the cursor in small steps across every pair of neighbouring interactables: the label
+  changes at most once per boundary and always names the object under the cursor.
 
 ## How you work at this studio
 - Read `studio/studio.config.json` (set by `/game-studio:setup`) and `${CLAUDE_PLUGIN_ROOT}/skills/studio/references/operating-model.md` first.
